@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "mongoose": "^5.11.17",
+    "nanoid": "^3.1.20",
     "next": "10.0.7",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.4",
