@@ -12,8 +12,7 @@
     "nanoid": "^3.1.20",
     "next": "10.0.7",
     "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "valid-url": "^1.0.9"
+    "react-dom": "17.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.4",

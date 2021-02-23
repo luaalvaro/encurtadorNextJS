@@ -38,7 +38,7 @@ export default async function handler(req, res) {
                 return res.status(400).json({ success: false })
             }
             break
-        case 'DELETE' /* Delete a model by its ID */:
+        case 'DELETE':
             try {
                 const deletedShort = await Short.findOneAndUpdate({ shortId: shortId, shortDeleted: false }, { shortDeleted: true })
 
