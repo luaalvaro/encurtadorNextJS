@@ -118,7 +118,7 @@ export default function Home() {
           <input id="inputResponse" readOnly autoComplete="off" className="w-8/12 p-3 bg-gray-200 rounded-l focus:outline-none focus:text-blue-600 focus:bg-white" type="text" />
           <button id="btnCopy" className="w-4/12 p-3 font-bold text-white bg-blue-500 rounded-r focus:outline-none hover:bg-blue-600">COPY!</button>
         </div>
-        <p id="pViewSearch" className="mt-2">Deseja visualizar um encurtador? <a onClick={viewSearch} id="viewSearch" className="font-bold text-green-500 cursor-pointer">clique aqui!</a></p>
+        <p id="pViewSearch" className="mt-2"><a onClick={viewSearch} id="viewSearch" className="font-bold text-green-500 cursor-pointer">Click here</a> to view the last 05 short links</p>
         <table id="table" className="hidden w-full mt-2 text-center table-fixed md:max-w-3xl">
           <tr className="font-bold bg-gray-200">
             <td>Url Destination</td>
