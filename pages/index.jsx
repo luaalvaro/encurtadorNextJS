@@ -31,6 +31,9 @@ export default function Home() {
           const fieldResponse = document.getElementById("fieldResponse")
           const fieldInput = document.getElementById("fieldInput")
           const inputResponse = document.getElementById("inputResponse")
+          const inputText = document.getElementById("inputText")
+
+          inputText.value = ''
 
           fieldResponse.classList.remove("hidden")
           fieldInput.classList.add("hidden")
@@ -44,6 +47,56 @@ export default function Home() {
     }
   }
 
+  function viewSearch() {
+    const fieldResponse = document.getElementById("fieldResponse")
+    const fieldInput = document.getElementById("fieldInput")
+    const pViewSearch = document.getElementById("pViewSearch")
+
+    fieldResponse.classList.add("hidden")
+    fieldInput.classList.add("hidden")
+    pViewSearch.classList.add("hidden")
+
+    getShorteners()
+  }
+
+  function getShorteners() {
+    const table = document.getElementById("table")
+    table.classList.remove("hidden")
+
+    fetch(/api/)
+      .then(res => res.json())
+      .then(res => {
+
+        for (let i = 1; i <= 5; i++) {
+          try {
+            var row = table.insertRow(i)
+            var cell01 = row.insertCell(0)
+            var cell02 = row.insertCell(1)
+            var cell03 = row.insertCell(2)
+            cell01.innerHTML = res.data[i].urlDest
+            cell02.innerHTML = res.data[i].shortId
+            cell03.innerHTML = res.data[i].hits
+          } catch (error) {
+
+          }
+        }
+
+      })
+  }
+
+  function getHomePage() {
+    const table = document.getElementById("table")
+    const fieldInput = document.getElementById("fieldInput")
+    const pViewSearch = document.getElementById("pViewSearch")
+    const fieldResponse = document.getElementById("fieldResponse")
+
+
+    table.classList.add("hidden")
+    pViewSearch.classList.remove("hidden")
+    fieldResponse.classList.add("hidden")
+    fieldInput.classList.remove("hidden")
+  }
+
   return (
     <>
       <Head>
@@ -55,7 +108,7 @@ export default function Home() {
       </Head>
 
       <div className="flex flex-col items-center justify-center w-10/12 h-screen mx-auto">
-        <Image src="/logo.svg" width="196" height="196" />
+        <a onClick={getHomePage} className="cursor-pointer"><Image src="/logo.svg" width="196" height="196" /></a>
         <h1 className="mt-4 text-3xl">URL SHORTENER</h1>
         <div id="fieldInput" className="w-full mt-8 bg-gray-200 border border-gray-400 rounded rounded-l md:max-w-3xl">
           <input id="inputText" placeholder="https://" value={urlDest} onChange={(e) => setUrlDest(urlDest = e.target.value)} autoComplete="off" className="w-8/12 p-3 bg-gray-200 rounded-l focus:outline-none focus:text-green-600 focus:bg-white" type="text" />
@@ -63,8 +116,17 @@ export default function Home() {
         </div>
         <div id="fieldResponse" className="hidden w-full mt-8 bg-gray-200 border border-gray-400 rounded rounded-l md:max-w-3xl">
           <input id="inputResponse" readOnly autoComplete="off" className="w-8/12 p-3 bg-gray-200 rounded-l focus:outline-none focus:text-blue-600 focus:bg-white" type="text" />
-          <button id="btn" className="w-4/12 p-3 font-bold text-white bg-blue-500 rounded-r focus:outline-none hover:bg-blue-600">COPY!</button>
+          <button id="btnCopy" className="w-4/12 p-3 font-bold text-white bg-blue-500 rounded-r focus:outline-none hover:bg-blue-600">COPY!</button>
         </div>
+        <p id="pViewSearch" className="mt-2">Deseja visualizar um encurtador? <a onClick={viewSearch} id="viewSearch" className="font-bold text-green-500 cursor-pointer">clique aqui!</a></p>
+        <table id="table" className="hidden w-full mt-2 text-center table-fixed md:max-w-3xl">
+          <tr className="font-bold bg-gray-200">
+            <td>Url Destination</td>
+            <td>Shortener</td>
+            <td>Hits</td>
+          </tr>
+        </table>
+
         <p className="mt-20 text-green-800 opacity-80">Enjoy, completely free, forever!</p>
       </div>
 
